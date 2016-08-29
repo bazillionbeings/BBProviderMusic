@@ -6,7 +6,7 @@ class MusicProvider {
         const TIME_OUT = 500;
 
         if (!asset.backgroundImageUrl) {
-            let youtubeId = asset.url.substr(id.length - 11);
+            let youtubeId = asset.url.substr(asset.url.length - 11);
 
             let url = `${URI_BEGINNING}${youtubeId}/maxresdefault.jpg`;
             return rp.get({
