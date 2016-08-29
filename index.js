@@ -1,22 +1,23 @@
 'use strict';
 
-const rp = require('request-promise');
+const rp = require('request-promise'),
+    providerName = require('./package.json').name;
 
 class MusicProvider {
     completeMissing(asset, url) {
         const URI_BEGINNING = 'http://img.youtube.com/vi/';
         const TIME_OUT = 500;
         if (!asset.sourceIconUrl) {
-            asset.sourceIconUrl = `${url}/provider/asset/${provider.name}/false/source`;
+            asset.sourceIconUrl = `${url}/provider/asset/${providerName}/false/source`;
         }
         if (!asset.sourceInvertedIconUrl) {
-            asset.sourceInvertedIconUrl = `${url}/provider/asset/${provider.name}/true/source`;
+            asset.sourceInvertedIconUrl = `${url}/provider/asset/${providerName}/true/source`;
         }
         if (!asset.classIconUrl) {
-            asset.classIconUrl = `${url}/provider/asset/${provider.name}/false/icon`;
+            asset.classIconUrl = `${url}/provider/asset/${providerName}/false/icon`;
         }
         if (!asset.classInvertedIconUrl) {
-            asset.classInvertedIconUrl = `${url}/provider/asset/${provider.name}/true/icon`;
+            asset.classInvertedIconUrl = `${url}/provider/asset/${providerName}/true/icon`;
         }
         if (!asset.backgroundImageUrl) {
             let youtubeId = asset.url.substr(asset.url.length - 11);
