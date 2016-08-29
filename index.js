@@ -3,14 +3,26 @@
 const rp = require('request-promise');
 
 class MusicProvider {
-    completeMissing(asset) {
+    completeMissing(asset, url) {
         const URI_BEGINNING = 'http://img.youtube.com/vi/';
         const TIME_OUT = 500;
-
+        if (!asset.sourceIconUrl) {
+            asset.sourceIconUrl = `${url}/provider/asset/${provider.name}/false/source`;
+        }
+        if (!asset.sourceInvertedIconUrl) {
+            asset.sourceInvertedIconUrl = `${url}/provider/asset/${provider.name}/true/source`;
+        }
+        if (!asset.classIconUrl) {
+            asset.classIconUrl = `${url}/provider/asset/${provider.name}/false/icon`;
+        }
+        if (!asset.classInvertedIconUrl) {
+            asset.classInvertedIconUrl = `${url}/provider/asset/${provider.name}/true/icon`;
+        }
         if (!asset.backgroundImageUrl) {
             let youtubeId = asset.url.substr(asset.url.length - 11);
 
             let url = `${URI_BEGINNING}${youtubeId}/maxresdefault.jpg`;
+
             return rp.get({
                 url
             }).then(() => {
@@ -40,11 +52,7 @@ class MusicProvider {
                                     }).then(() => {
                                         asset.backgroundImageUrl = url;
                                     }).catch(err => {
-                                        if (err.statusCode === 404) {
-                                            console.log(`${URI_BEGINNING}${youtubeId}/maxresdefault.jpg`);
-                                        } else {
-                                            throw err;
-                                        }
+                                        asset.backgroundImageUrl = null;
                                     });
                                 } else {
                                     throw err;
