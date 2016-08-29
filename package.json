@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/bazillionbeings/BBProviderMusic/issues"
   },
-  "homepage": "https://github.com/bazillionbeings/BBProviderMusic#readme"
+  "homepage": "https://github.com/bazillionbeings/BBProviderMusic#readme",
+  "dependencies": {
+    "request": "^2.74.0",
+    "request-promise": "^4.1.1"
+  }
 }
