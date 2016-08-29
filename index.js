@@ -1,5 +1,7 @@
 'use strict';
 
+const rp = require('request-promise');
+
 class MusicProvider {
     completeMissing(asset) {
         const URI_BEGINNING = 'http://img.youtube.com/vi/';
