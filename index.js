@@ -24,7 +24,10 @@ class MusicProvider {
         let youtubeId = asset.url.substr(asset.url.length - 11);
         let promises = [];
         if (!asset.attributes.name) {
-            let p = rp.get({url: `https://www.googleapis.com/youtube/v3/videos?part=id%2Csnippet&id=${youtubeId}&key=${youtubeKey}`}).then(result => {
+            let p = rp.get({
+                url: `https://www.googleapis.com/youtube/v3/videos?part=id%2Csnippet&id=${youtubeId}&key=${youtubeKey}`,
+                json: true
+            }).then(result => {
                 asset.attributes.name = result.items[0].snippet.title;
             });
             promises.push(p);
